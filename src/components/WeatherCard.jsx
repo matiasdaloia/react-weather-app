@@ -1,26 +1,21 @@
 import React from "react";
-import "./WeatherCard.css";
 
-function WeatherCard({ ciudad, pais, resultado }) {
-  const iconIMG = resultado.weather[0];
-  console.log(iconIMG);
+function WeatherCard({ resultado }) {
+  const { name, main } = resultado;
+  if (!name) return null;
+
   return (
-    <div class="card">
-      <h2>{ciudad}</h2>
-      <h3>
-        Cloudy
-        <span>
-          Wind 10km/h <span class="dot">•</span> Precip 0%
-        </span>
-      </h3>
-      <h1>23°</h1>
-      <div class="sky">
-        <div class="sun"></div>
-        <div class="cloud">
-          <div class="circle-small"></div>
-          <div class="circle-tall"></div>
-          <div class="circle-medium"></div>
-        </div>
+    <div className="card ma2">
+      <div className="card-content">
+        <p className="title tc">
+          La temperatura en {name}, {resultado.sys.country}:
+        </p>
+        <h2 className="subtitle tc">{main.temp}° C</h2>
+        <footer className="card-footer">
+          <p className="card-footer-item">
+            Copyright @ {new Date().getFullYear()}
+          </p>
+        </footer>
       </div>
     </div>
   );

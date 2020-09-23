@@ -3,6 +3,7 @@ import "bulma/css/bulma.css";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import WeatherCard from "./components/WeatherCard";
+import { apiKey } from "./apiKey";
 
 function App() {
   // state de la busqueda :
@@ -24,7 +25,6 @@ function App() {
   useEffect(() => {
     const consultarAPI = async () => {
       if (consulta) {
-        const apiKey = "4dca588de43e0c60faec74b4ddd2ab7a";
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${apiKey}&units=metric`;
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
@@ -32,7 +32,7 @@ function App() {
       }
     };
     consultarAPI();
-  }, [consulta]);
+  }, [consulta, ciudad, pais]);
 
   return (
     <Fragment>
